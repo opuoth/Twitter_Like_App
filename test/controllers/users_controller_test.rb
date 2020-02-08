@@ -83,7 +83,16 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     get users_path
     assert_select "a[href=?]", user_path(@non_activated_user), count: 0
     get user_path(@non_activated_user)
-    assert_redirected_to root_url 
+    assert_redirected_to root_url
   end
 
+  test "should redirect following when not logged in" do
+    get following_user_path(@user)
+    assert_redirected_to login_url
+  end
+
+  test "should redirect followers when not logged in" do
+    get followers_user_path(@user)
+    assert_redirected_to login_url
+  end
 end

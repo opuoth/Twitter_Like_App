@@ -3,6 +3,14 @@
 
 <%= will_paginate %>
 
+<p>content serch</p>
+<%= form_with url:users_path, method: :get,local: :false do |f| %>
+  <p>
+    <%= f.text_field :search%> 
+    <%= f.submit "Search", :name => nil %>
+  </p>
+<% end %>
+
 <ul class="users">
   <%= render @users %>
 </ul>
